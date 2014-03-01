@@ -34,6 +34,10 @@
             android:name="com.crunchbang.sanskriti.DetailsActivity"
             android:label="@string/title_activity_details" >
         </activity>
+        <activity
+            android:name="com.crunchbang.sanskriti.HomeActivity"
+            android:label="@string/title_activity_home" >
+        </activity>
     </application>
 
 </manifest>

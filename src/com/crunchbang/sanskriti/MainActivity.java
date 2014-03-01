@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class MainActivity extends FragmentActivity {
 
@@ -20,6 +21,9 @@ public class MainActivity extends FragmentActivity {
 	String[] classes;
 	ActionBarDrawerToggle drawerToggle;
 	DrawerLayout drawer;
+	ListView navList;
+
+	public static final String KEY = "com.crunchbang.sanskriti.MainActivity";
 
 	private int selection = 0;
 	private int oldSelection = -1;
@@ -30,8 +34,8 @@ public class MainActivity extends FragmentActivity {
 		setContentView(R.layout.activity_main);
 		names = getResources().getStringArray(R.array.nav_names);
 		classes = getResources().getStringArray(R.array.nav_classes);
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActionBar()
-				.getThemedContext(), android.R.layout.simple_list_item_1, names);
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+				android.R.layout.simple_list_item_1, names);
 		drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 		drawerToggle = new ActionBarDrawerToggle(this, drawer,
 				R.drawable.ic_drawer, R.string.open, R.string.close) {
@@ -39,6 +43,12 @@ public class MainActivity extends FragmentActivity {
 			public void onDrawerClosed(View drawerView) {
 				super.onDrawerClosed(drawerView);
 				updateContent();
+				invalidateOptionsMenu();
+				/*
+				 * if (opened != null && opened == false) { opened = true; if
+				 * (pref != null) { Editor editor = pref.edit();
+				 * editor.putBoolean(OPENED_KEY, true); editor.apply(); } }
+				 */
 			}
 
 			@Override
@@ -52,7 +62,7 @@ public class MainActivity extends FragmentActivity {
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		getActionBar().setHomeButtonEnabled(true);
 		updateContent();
-		final ListView navList = (ListView) findViewById(R.id.drawer);
+		navList = (ListView) findViewById(R.id.drawer);
 		navList.setAdapter(adapter);
 		navList.setOnItemClickListener(new OnItemClickListener() {
 
@@ -60,21 +70,45 @@ public class MainActivity extends FragmentActivity {
 			public void onItemClick(AdapterView<?> parent, View view,
 					final int position, long id) {
 				selection = position;
+				navList.setItemChecked(position, true);
 				drawer.closeDrawer(navList);
 			}
 		});
+
+		/*
+		 * new Thread(new Runnable() {
+		 * 
+		 * @Override public void run() { pref = getPreferences(MODE_PRIVATE);
+		 * opened = pref.getBoolean(OPENED_KEY, false); if (opened == false) {
+		 * drawer.openDrawer(navList); }
+		 * 
+		 * } }).start();
+		 */
 		FragmentTransaction tx = getSupportFragmentManager().beginTransaction();
-		tx.replace(R.id.main, new EventListFragment());
+		tx.replace(R.id.main, new HomeFragment());
 		tx.commit();
+		drawer.openDrawer(navList);
 	}
 
 	private void updateContent() {
 		getActionBar().setTitle(names[selection]);
 		if (selection != oldSelection) {
+			String value = null;
+			switch (selection) {
+			case 1:
+				value = "intra";
+				break;
+			case 2:
+				value = "sports";
+				break;
+			}
+			Bundle bundle = new Bundle();
+			bundle.putString(KEY, value);
 			FragmentTransaction tx = getSupportFragmentManager()
 					.beginTransaction();
-			tx.replace(R.id.main,
-					Fragment.instantiate(MainActivity.this, classes[selection]));
+			tx.replace(R.id.main, Fragment.instantiate(MainActivity.this,
+					classes[selection], bundle));
+			tx.addToBackStack(null);
 			tx.commit();
 			oldSelection = selection;
 		}

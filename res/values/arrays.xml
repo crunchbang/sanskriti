@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string-array name="nav_names">
+        <item>Home</item>
         <item>Intra Events</item>
+        <item>Intra Sports</item>
+        <item>Social Initiative</item>
     </string-array>
-    
     <string-array name="nav_classes">
+        <item>com.crunchbang.sanskriti.HomeFragment</item>
         <item>com.crunchbang.sanskriti.EventListFragment</item>
+        <item>com.crunchbang.sanskriti.EventListFragment</item>
+        <item>com.crunchbang.sanskriti.SocialFragment</item>
     </string-array>
+
 </resources>

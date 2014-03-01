@@ -19,24 +19,25 @@ public class EventListFragment extends ListFragment {
 	public static final String KEY = "com.crunchbang.sanskriti.EventListFragment";
 	DataBaseHelper dbHelper;
 	View view;
+	String eventType;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		Log.d("FRAG", "ENTER FAT");
 		view = inflater.inflate(R.layout.fragment_event_list, container, false);
 		dbHelper = DataBaseHelper.getInstance(getActivity()
 				.getApplicationContext());
+		eventType = getArguments().getString(MainActivity.KEY);
 		new LoadListTask(getActivity().getApplicationContext()).execute();
 		return view;
 	}
 
-	/*
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
 		super.onListItemClick(l, v, position, id);
 
 		Cursor itemCursor = (Cursor) getListAdapter().getItem(position);
+		Log.d("TAG", "CLICKED!");
 		int itemID = itemCursor.getInt(itemCursor
 				.getColumnIndex(DataBaseHelper.KEY_ID));
 		Bundle bundle = new Bundle();
@@ -46,11 +47,9 @@ public class EventListFragment extends ListFragment {
 		intent.putExtras(bundle);
 		startActivity(intent);
 	}
-	*/
 
 	@Override
 	public void onDestroyView() {
-		dbHelper.close();
 		super.onDestroyView();
 	}
 
@@ -64,7 +63,7 @@ public class EventListFragment extends ListFragment {
 
 		@Override
 		protected Void doInBackground(Void... params) {
-			cursor = dbHelper.getEvents();
+			cursor = dbHelper.getEvents(eventType);
 			cursor.moveToFirst();
 			return null;
 		}

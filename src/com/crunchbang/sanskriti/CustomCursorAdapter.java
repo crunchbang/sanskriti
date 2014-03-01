@@ -16,6 +16,12 @@ public class CustomCursorAdapter extends SimpleCursorAdapter {
 	Cursor cursor;
 	Context context;
 
+	static class ViewHolder {
+		public TextView text;
+		public TextView date;
+		public ImageView image;
+	}
+
 	public CustomCursorAdapter(Context context, int layout, Cursor c,
 			String[] from, int[] to) {
 		super(context, layout, c, from, to, 0);
@@ -25,11 +31,20 @@ public class CustomCursorAdapter extends SimpleCursorAdapter {
 
 	@Override
 	public View getView(int pos, View view, ViewGroup parent) {
+		ViewHolder viewHolder;
 		if (view == null) {
 			LayoutInflater inflater = (LayoutInflater) context
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			view = inflater.inflate(R.layout.list_event_row, null);
+			viewHolder = new ViewHolder();
+			viewHolder.text = (TextView) view.findViewById(R.id.ename);
+			viewHolder.date = (TextView) view.findViewById(R.id.edate);
+			viewHolder.image = (ImageView) view.findViewById(R.id.eimage);
+			view.setTag(viewHolder);
+		} else {
+			viewHolder = (ViewHolder) view.getTag();
 		}
+
 		cursor.moveToPosition(pos);
 		String eventName = cursor.getString(cursor
 				.getColumnIndex(DataBaseHelper.KEY_ENAME));
@@ -38,17 +53,13 @@ public class CustomCursorAdapter extends SimpleCursorAdapter {
 		byte[] eventPic = cursor.getBlob(cursor
 				.getColumnIndex(DataBaseHelper.KEY_EPIC));
 
-		TextView tv = (TextView) view.findViewById(R.id.ename);
-		TextView tvDate = (TextView) view.findViewById(R.id.edate);
-		ImageView iv = (ImageView) view.findViewById(R.id.eimage);
-
-		tv.setText(eventName);
-		tvDate.setText(eventDate);
-		if (eventPic != null) {
-			iv.setImageBitmap(BitmapFactory.decodeByteArray(eventPic, 0,
-					eventPic.length));
+		viewHolder.text.setText(eventName);
+		viewHolder.date.setText(eventDate);
+		if (eventPic != null && eventPic.length > 3) {
+			viewHolder.image.setImageBitmap(BitmapFactory.decodeByteArray(eventPic,
+					0, eventPic.length));
 		}
-		
+
 		return view;
 
 	}

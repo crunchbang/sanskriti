@@ -10,5 +10,8 @@
     <string name="open">Drawer Open</string>
     <string name="close">Drawer Close</string>
     <string name="title_activity_details">DetailsActivity</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="spreading_smiles">SMILE! Its best thing you can do with your lips.\nYou have one smile; why not share it with everyone??\nIt’s the one thing that can be given away and returned back instantly with absolutely no cost to pay for.  We, at SANSKRITI are here to help you share that smile.\nCome, be a part of this social initiative and see how your smile can make a difference!</string>
+    <string name="blood_donation">Donate &amp;amp; Save Life\nLive through others even after the end of your life.  There are certain gifts, that, if kept with you would only dry up and cease to exist. These gifts could be the key to save a life and to all those that depend on it.\nDonate your blood and spare your organs for the needy.\n See how a single pint can save lives and a single act of kindness can create a million smiles!</string>
 
 </resources>
