@@ -1,4 +1,4 @@
-package com.crunchbang.sanskriti;
+package com.crunchbang.sanskriti.helper;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.crunchbang.sanskriti.dbhelper.DataBaseHelper;
+import com.crunchbang.sanskriti.R;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
@@ -44,7 +44,7 @@ public class ImageCursorAdapter extends CursorAdapter {
 
 	@Override
 	public View newView(Context context, Cursor cursor, ViewGroup parent) {
-		View view = mInflater.inflate(R.layout.list_event_row, parent, false);
+		View view = mInflater.inflate(R.layout.event_list_row, parent, false);
 		ViewHolder viewHolder = new ViewHolder();
 		viewHolder.text = (TextView) view.findViewById(R.id.ename);
 		viewHolder.date = (TextView) view.findViewById(R.id.edate);
@@ -65,39 +65,8 @@ public class ImageCursorAdapter extends CursorAdapter {
 		viewHolder.text.setText(cursor.getString(viewHolder.textIndex));
 		viewHolder.date.setText(cursor.getString(viewHolder.dateIndex));
 		String picURI = cursor.getString(viewHolder.imageIndex);
-		/*
-		 * byte[] eventPic = cursor.getBlob(viewHolder.imageIndex); if
-		 * (eventPic.length > 3) {
-		 * viewHolder.image.setImageBitmap(BitmapFactory.decodeByteArray(
-		 * eventPic, 0, eventPic.length)); }
-		 */
 		if (!picURI.equals(""))
 			imageLoader.displayImage(picURI, viewHolder.image, options);
 
 	}
-	/*
-	 * @Override public View getView(int pos, View view, ViewGroup parent) {
-	 * ViewHolder viewHolder; if (view == null) { view =
-	 * inflater.inflate(R.layout.list_event_row, null); viewHolder = new
-	 * ViewHolder(); viewHolder.text = (TextView) view.findViewById(R.id.ename);
-	 * viewHolder.date = (TextView) view.findViewById(R.id.edate);
-	 * viewHolder.image = (ImageView) view.findViewById(R.id.eimage);
-	 * view.setTag(viewHolder); } else { viewHolder = (ViewHolder)
-	 * view.getTag(); }
-	 * 
-	 * cursor.moveToPosition(pos); String eventName = cursor.getString(cursor
-	 * .getColumnIndex(DataBaseHelper.KEY_ENAME)); String eventDate =
-	 * cursor.getString(cursor .getColumnIndex(DataBaseHelper.KEY_EDATE));
-	 * byte[] eventPic = cursor.getBlob(cursor
-	 * .getColumnIndex(DataBaseHelper.KEY_EPIC));
-	 * 
-	 * viewHolder.text.setText(eventName); viewHolder.date.setText(eventDate);
-	 * if (eventPic != null && eventPic.length > 3) {
-	 * viewHolder.image.setImageBitmap(BitmapFactory.decodeByteArray(eventPic,
-	 * 0, eventPic.length)); }
-	 * 
-	 * return view;
-	 * 
-	 * }
-	 */
 }

@@ -22,19 +22,19 @@ public class MainActivity extends FragmentActivity {
 	DrawerLayout drawer;
 	ListView navList;
 
-	public static final String KEY = "com.crunchbang.sanskriti.MainActivity";
-
 	private int selection = 0;
 	private int oldSelection = -1;
+
+	public static final String KEY = "com.crunchbang.sanskriti.MainActivity";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+
 		names = getResources().getStringArray(R.array.nav_names);
 		classes = getResources().getStringArray(R.array.nav_classes);
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-				android.R.layout.simple_list_item_1, names);
+
 		drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 		drawerToggle = new ActionBarDrawerToggle(this, drawer,
 				R.drawable.ic_drawer, R.string.open, R.string.close) {
@@ -43,11 +43,6 @@ public class MainActivity extends FragmentActivity {
 				super.onDrawerClosed(drawerView);
 				updateContent();
 				invalidateOptionsMenu();
-				/*
-				 * if (opened != null && opened == false) { opened = true; if
-				 * (pref != null) { Editor editor = pref.edit();
-				 * editor.putBoolean(OPENED_KEY, true); editor.apply(); } }
-				 */
 			}
 
 			@Override
@@ -61,6 +56,9 @@ public class MainActivity extends FragmentActivity {
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		getActionBar().setHomeButtonEnabled(true);
 		updateContent();
+
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+				android.R.layout.simple_list_item_1, names);
 		navList = (ListView) findViewById(R.id.drawer);
 		navList.setAdapter(adapter);
 		navList.setOnItemClickListener(new OnItemClickListener() {
@@ -74,17 +72,11 @@ public class MainActivity extends FragmentActivity {
 			}
 		});
 
-		/*
-		 * new Thread(new Runnable() {
-		 * 
-		 * @Override public void run() { pref = getPreferences(MODE_PRIVATE);
-		 * opened = pref.getBoolean(OPENED_KEY, false); if (opened == false) {
-		 * drawer.openDrawer(navList); }
-		 * 
-		 * } }).start();
-		 */
-		FragmentTransaction tx = getSupportFragmentManager().beginTransaction();
-		tx.replace(R.id.main, new HomeFragment());
+		FragmentTransaction tx = getSupportFragmentManager()
+				.beginTransaction();
+		tx.replace(R.id.main, Fragment.instantiate(MainActivity.this,
+				classes[0]));
+		tx.addToBackStack(null);
 		tx.commit();
 		drawer.openDrawer(navList);
 	}

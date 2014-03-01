@@ -12,7 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-import com.crunchbang.sanskriti.dbhelper.DataBaseHelper;
+import com.crunchbang.sanskriti.helper.DataBaseHelper;
+import com.crunchbang.sanskriti.helper.ImageCursorAdapter;
 
 public class EventListFragment extends ListFragment {
 
@@ -70,17 +71,8 @@ public class EventListFragment extends ListFragment {
 
 		@Override
 		protected void onPostExecute(Void result) {
-
-			/*
-			 * String[] from = new String[] { DataBaseHelper.KEY_ENAME }; int[]
-			 * to = new int[] { R.id.ename };
-			 * 
-			 * CustomCursorAdapter adapter = new CustomCursorAdapter(context,
-			 * R.layout.list_event_row, cursor, from, to);
-			 */
 			ImageCursorAdapter adapter = new ImageCursorAdapter(context, cursor);
 			setListAdapter(adapter);
-
 		}
 
 	}

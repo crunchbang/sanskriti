@@ -1,4 +1,4 @@
-package com.crunchbang.sanskriti.dbhelper;
+package com.crunchbang.sanskriti.helper;
 
 import android.content.Context;
 import android.database.Cursor;

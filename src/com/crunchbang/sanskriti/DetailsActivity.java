@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.crunchbang.sanskriti.dbhelper.DataBaseHelper;
+import com.crunchbang.sanskriti.helper.DataBaseHelper;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
@@ -19,14 +19,14 @@ public class DetailsActivity extends Activity {
 	DataBaseHelper dbHelper;
 	TextView tvName, tvDesc, tvHead1, tvHead2, tvDate, tvRules, tvEPhone1,
 			tvEPhone2;
-	View ruleLayout;
+	View ruleLayout, phone1Layout, phone2Layout;
 	ImageView ivPic;
 	ImageLoader imageLoader;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.event_layout);
+		setContentView(R.layout.activity_details);
 
 		imageLoader = ImageLoader.getInstance();
 		imageLoader.init(ImageLoaderConfiguration.createDefault(this));
@@ -42,20 +42,16 @@ public class DetailsActivity extends Activity {
 		ivPic = (ImageView) findViewById(R.id.iv_epic);
 		tvEPhone1 = (TextView) findViewById(R.id.tv_ephone1);
 		tvEPhone2 = (TextView) findViewById(R.id.tv_ephone2);
-		ruleLayout = findViewById(R.id.card_rules);
 
-		// temporary adjustment
-		tvEPhone1.setVisibility(View.GONE);
-		tvEPhone2.setVisibility(View.GONE);
+		ruleLayout = findViewById(R.id.card_rules);
+		phone1Layout = findViewById(R.id.phone1);
+		phone2Layout = findViewById(R.id.phone2);
+
+		// Temporary adjustment
+		phone1Layout.setVisibility(View.GONE);
+		phone2Layout.setVisibility(View.GONE);
 
 		new DetailsLoaderTask().execute();
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.details, menu);
-		return true;
 	}
 
 	private class DetailsLoaderTask extends AsyncTask<Void, Void, Void> {
@@ -98,7 +94,12 @@ public class DetailsActivity extends Activity {
 				tvRules.setText(eRules);
 			imageLoader.displayImage(picLoc, ivPic);
 		}
-
 	}
 
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.details, menu);
+		return true;
+	}
 }
