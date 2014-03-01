@@ -48,7 +48,7 @@ public class DataBaseHelper extends SQLiteAssetHelper {
 		if (eventType != null)
 			where = KEY_ETYPE + "=" + "'" + eventType + "'";
 		Cursor cursor = db.query(TABLE_EVENTS, listProjection, where, null,
-				null, null, null);
+				null, null, KEY_EDATE);
 		return cursor;
 	}
 
@@ -56,7 +56,7 @@ public class DataBaseHelper extends SQLiteAssetHelper {
 		String where = KEY_ID + "=" + "'" + eventID + "'";
 		db = this.getReadableDatabase();
 		return db.query(TABLE_EVENTS, EVENTS_PROJECTION, where, null, null,
-				null, null);
+				null, KEY_EDATE);
 	}
 
 	@Override

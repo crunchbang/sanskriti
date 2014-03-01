@@ -18,8 +18,7 @@
                 android:id="@+id/iv_epic"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                android:src="@drawable/smile" />
+                android:scaleType="centerCrop" />
 
             <ImageView
                 android:layout_width="match_parent"
@@ -33,7 +32,6 @@
                 android:layout_gravity="center|bottom"
                 android:layout_marginBottom="15dp"
                 android:gravity="bottom"
-                android:text="Event Title"
                 android:textColor="@android:color/white"
                 android:textSize="25sp"
                 android:textStyle="bold" />
@@ -65,7 +63,6 @@
                         android:id="@+id/tv_edate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="March 03"
                         android:textColor="#31b49d"
                         android:textSize="15sp" />
 
@@ -169,7 +166,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:alpha=".6"
-                android:text="The details of the event goes here"
                 android:textColor="@android:color/background_dark"
                 android:textSize="12sp" />
         </LinearLayout>
@@ -200,7 +196,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:alpha=".6"
-                android:text="The rules for the event goes here"
                 android:textColor="@android:color/background_dark"
                 android:textSize="12sp" />
         </LinearLayout>
@@ -238,7 +233,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="3dp"
                     android:alpha=".6"
-                    android:text="Head1"
                     android:textColor="@android:color/background_dark"
                     android:textSize="12sp" />
 
@@ -289,7 +283,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="3dp"
                     android:alpha=".6"
-                    android:text="Head2"
                     android:textColor="@android:color/background_dark"
                     android:textSize="12sp" />
 
@@ -314,7 +307,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:alpha=".6"
-                        android:text="+91 9999999999"
                         android:textColor="@android:color/background_dark"
                         android:textSize="12sp" />
                 </LinearLayout>
