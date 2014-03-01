@@ -20,13 +20,14 @@ public class DataBaseHelper extends SQLiteAssetHelper {
 	public static final String KEY_EPIC = "epic";
 	public static final String KEY_ETYPE = "etype";
 	public static final String KEY_ERULES = "erules";
+	public static final String KEY_PICLOC = "picloc";
 
 	private static SQLiteDatabase db;
 	private static DataBaseHelper sInstance;
 
 	public static final String[] EVENTS_PROJECTION = new String[] { KEY_ID,
 			KEY_ENAME, KEY_EDATE, KEY_EDESC, KEY_EHEAD1, KEY_EHEAD2, KEY_EPIC,
-			KEY_ETYPE, KEY_ERULES };
+			KEY_ETYPE, KEY_ERULES, KEY_PICLOC };
 
 	public static DataBaseHelper getInstance(Context context) {
 		if (sInstance == null) {
@@ -43,7 +44,7 @@ public class DataBaseHelper extends SQLiteAssetHelper {
 	public Cursor getEvents(String eventType) {
 		db = this.getReadableDatabase();
 		String[] listProjection = new String[] { KEY_ID, KEY_ENAME, KEY_EDATE,
-				KEY_EPIC, KEY_ETYPE };
+				KEY_EPIC, KEY_ETYPE, KEY_PICLOC };
 		String where = null;
 		if (eventType != null)
 			where = KEY_ETYPE + "=" + "'" + eventType + "'";

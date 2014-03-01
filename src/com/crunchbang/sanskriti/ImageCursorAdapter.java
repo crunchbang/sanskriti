@@ -2,7 +2,6 @@ package com.crunchbang.sanskriti;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.graphics.BitmapFactory;
 import android.support.v4.widget.CursorAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,10 +10,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.crunchbang.sanskriti.dbhelper.DataBaseHelper;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
 public class ImageCursorAdapter extends CursorAdapter {
 	Cursor cursor;
 	Context context;
+	DisplayImageOptions options;
+	ImageLoader imageLoader;
 	private LayoutInflater mInflater;
 
 	private static class ViewHolder {
@@ -30,8 +34,12 @@ public class ImageCursorAdapter extends CursorAdapter {
 		super(context, c, 0);
 		this.cursor = c;
 		this.context = context;
+		options = new DisplayImageOptions.Builder().cacheInMemory(true)
+				.cacheOnDisc(true).resetViewBeforeLoading(true).build();
 		mInflater = (LayoutInflater) context
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		imageLoader = ImageLoader.getInstance();
+		imageLoader.init(ImageLoaderConfiguration.createDefault(context));
 	}
 
 	@Override
@@ -46,7 +54,7 @@ public class ImageCursorAdapter extends CursorAdapter {
 		viewHolder.dateIndex = cursor
 				.getColumnIndexOrThrow(DataBaseHelper.KEY_EDATE);
 		viewHolder.imageIndex = cursor
-				.getColumnIndexOrThrow(DataBaseHelper.KEY_EPIC);
+				.getColumnIndexOrThrow(DataBaseHelper.KEY_PICLOC);
 		view.setTag(viewHolder);
 		return view;
 	}
@@ -56,13 +64,15 @@ public class ImageCursorAdapter extends CursorAdapter {
 		ViewHolder viewHolder = (ViewHolder) view.getTag();
 		viewHolder.text.setText(cursor.getString(viewHolder.textIndex));
 		viewHolder.date.setText(cursor.getString(viewHolder.dateIndex));
+		String picURI = cursor.getString(viewHolder.imageIndex);
 		/*
-		byte[] eventPic = cursor.getBlob(viewHolder.imageIndex);
-		if (eventPic.length > 3) {
-			viewHolder.image.setImageBitmap(BitmapFactory.decodeByteArray(
-					eventPic, 0, eventPic.length));
-		}
-		*/
+		 * byte[] eventPic = cursor.getBlob(viewHolder.imageIndex); if
+		 * (eventPic.length > 3) {
+		 * viewHolder.image.setImageBitmap(BitmapFactory.decodeByteArray(
+		 * eventPic, 0, eventPic.length)); }
+		 */
+		if (!picURI.equals(""))
+			imageLoader.displayImage(picURI, viewHolder.image, options);
 
 	}
 	/*

@@ -2,7 +2,6 @@ package com.crunchbang.sanskriti;
 
 import android.app.Activity;
 import android.database.Cursor;
-import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
@@ -11,20 +10,26 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.crunchbang.sanskriti.dbhelper.DataBaseHelper;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
 public class DetailsActivity extends Activity {
 
 	int itemID;
 	DataBaseHelper dbHelper;
-	TextView tvName, tvDesc, tvHead1, tvHead2, tvDate, tvRules, tvEPhone1, tvEPhone2;
+	TextView tvName, tvDesc, tvHead1, tvHead2, tvDate, tvRules, tvEPhone1,
+			tvEPhone2;
 	View ruleLayout;
 	ImageView ivPic;
+	ImageLoader imageLoader;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.event_layout);
 
+		imageLoader = ImageLoader.getInstance();
+		imageLoader.init(ImageLoaderConfiguration.createDefault(this));
 		dbHelper = DataBaseHelper.getInstance(getApplicationContext());
 		Bundle bundle = getIntent().getExtras();
 		itemID = bundle.getInt(EventListFragment.KEY);
@@ -38,7 +43,7 @@ public class DetailsActivity extends Activity {
 		tvEPhone1 = (TextView) findViewById(R.id.tv_ephone1);
 		tvEPhone2 = (TextView) findViewById(R.id.tv_ephone2);
 		ruleLayout = findViewById(R.id.card_rules);
-		
+
 		// temporary adjustment
 		tvEPhone1.setVisibility(View.GONE);
 		tvEPhone2.setVisibility(View.GONE);
@@ -55,8 +60,7 @@ public class DetailsActivity extends Activity {
 
 	private class DetailsLoaderTask extends AsyncTask<Void, Void, Void> {
 		Cursor cursor;
-		String eName, eDate, eHead1, eHead2, eDesc, eRules;
-		byte[] ePic;
+		String eName, eDate, eHead1, eHead2, eDesc, eRules, picLoc;
 
 		@Override
 		protected Void doInBackground(Void... params) {
@@ -73,8 +77,8 @@ public class DetailsActivity extends Activity {
 					.getColumnIndex(DataBaseHelper.KEY_EHEAD2));
 			eDesc = cursor.getString(cursor
 					.getColumnIndex(DataBaseHelper.KEY_EDESC));
-			ePic = cursor.getBlob(cursor
-					.getColumnIndex(DataBaseHelper.KEY_EPIC));
+			picLoc = cursor.getString(cursor
+					.getColumnIndex(DataBaseHelper.KEY_PICLOC));
 			eRules = cursor.getString(cursor
 					.getColumnIndex(DataBaseHelper.KEY_ERULES));
 			cursor.close();
@@ -90,13 +94,9 @@ public class DetailsActivity extends Activity {
 			tvDesc.setText(eDesc);
 			if (eRules.equals(""))
 				ruleLayout.setVisibility(View.GONE);
-			else 
+			else
 				tvRules.setText(eRules);
-			if (ePic != null) {
-				ivPic.setImageBitmap(BitmapFactory.decodeByteArray(ePic, 0,
-						ePic.length));
-			}
-
+			imageLoader.displayImage(picLoc, ivPic);
 		}
 
 	}

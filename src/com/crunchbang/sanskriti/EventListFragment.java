@@ -80,6 +80,7 @@ public class EventListFragment extends ListFragment {
 			 */
 			ImageCursorAdapter adapter = new ImageCursorAdapter(context, cursor);
 			setListAdapter(adapter);
+
 		}
 
 	}
