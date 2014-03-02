@@ -7,7 +7,7 @@
             </solid>
         </shape>
     </item>
-    <item android:top="100dp">
+    <item >
         <shape android:shape="rectangle" >
             <gradient
                 android:angle="90"

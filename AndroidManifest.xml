@@ -16,11 +16,8 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.crunchbang.sanskriti.EventListFragment"
-            android:label="@string/app_name" >
-        </activity>
-        <activity
             android:name="com.crunchbang.sanskriti.MainActivity"
+            android:screenOrientation="portrait"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,16 +26,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.crunchbang.sanskriti.MMainActivity"
-            android:label="@string/title_activity_mmain" >
+            android:name="com.crunchbang.sanskriti.EventListFragment"
+            android:label="@string/app_name" >
         </activity>
         <activity
             android:name="com.crunchbang.sanskriti.DetailsActivity"
-            android:label="@string/title_activity_details" >
-        </activity>
-        <activity
-            android:name="com.crunchbang.sanskriti.HomeActivity"
-            android:label="@string/title_activity_home" >
+            android:label="@string/title_activity_details"
+            android:parentActivityName="com.crunchbang.sanskriti.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.crunchbang.sanskriti.MainActivity"/>
         </activity>
     </application>
 

@@ -16,4 +16,10 @@ public class HomeFragment extends Fragment {
 				
 	}
 
+	@Override
+	public void onResume() {
+		super.onResume();
+		getActivity().getActionBar().setTitle(R.string.home);
+	}
+
 }

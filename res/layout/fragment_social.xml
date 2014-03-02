@@ -1,107 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000000"
-    android:orientation="vertical" >
+    android:background="#fb4f4f" >
 
-    <ImageView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:alpha=".6"
-        android:scaleType="centerCrop"
-        android:src="@drawable/smile" />
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
 
         <LinearLayout
+            style="@style/DetailsCard"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:layout_height="wrap_content" >
 
-            <View
+            <TextView
+                style="?android:attr/listSeparatorTextViewStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_margin="20dp"
-                android:gravity="center"
-                android:orientation="vertical" >
-
-                <View
-                    android:layout_width="220dp"
-                    android:layout_height="2dp"
-                    android:background="#33ffffff" />
-
-                <TextView
-                    android:id="@+id/title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="25dp"
-                    android:layout_marginTop="25dp"
-                    android:text="SPREADING SMILES"
-                    android:textColor="@android:color/white"
-                    android:textSize="22sp"
-                    android:textStyle="bold" />
-
-                <View
-                    android:layout_width="220dp"
-                    android:layout_height="2dp"
-                    android:layout_alignBottom="@+id/title"
-                    android:background="#33ffffff" />
-            </LinearLayout>
+                android:fontFamily="sans-serif-condensed"
+                android:text="@string/spreading_smiles"
+                android:textColor="#fb4f4f"
+                android:textSize="15sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/rounded_edge"
-                android:padding="10dp"
-                android:text="@string/spreading_smiles"
-                android:textColor="@android:color/white"
+                android:fontFamily="sans-serif-condensed"
+                android:paddingTop="8dp"
+                android:text="@string/smile_details"
                 android:textSize="13sp" />
+        </LinearLayout>
 
-            <LinearLayout
+        <LinearLayout
+            style="@style/DetailsCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                style="?android:attr/listSeparatorTextViewStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/rounded_edge"
-                android:orientation="vertical" >
+                android:fontFamily="sans-serif-condensed"
+                android:text="@string/blood_organ_donation"
+                android:textColor="#fb4f4f"
+                android:textSize="15sp"
+                android:textStyle="bold" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginTop="10dp"
-                    android:paddingLeft="10dp"
-                    android:text="BLOOD DONATION"
-                    android:textColor="@android:color/white"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical|right"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:text="@string/blood_donation"
-                    android:textColor="@android:color/white"
-                    android:textSize="13sp" />
-            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-condensed"
+                android:paddingTop="8dp"
+                android:text="@string/blood_donation"
+                android:textSize="13sp" />
         </LinearLayout>
-    </ScrollView>
+    </LinearLayout>
 
-</FrameLayout>
+</ScrollView>

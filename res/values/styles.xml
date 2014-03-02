@@ -1,9 +1,73 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <style name="AppBaseTheme" parent="android:Theme.Light">
-    </style>
+    <style name="AppBaseTheme" parent="android:Theme.Light"></style>
 
     <style name="AppTheme" parent="AppBaseTheme">
+        <item name="android:windowBackground">@null</item>
+    </style>
+
+    <style name="DetailsCard">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:layout_marginBottom">0dp</item>
+        <item name="android:padding">16dp</item>
+        <item name="android:background">@drawable/card_layout</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="ContactDetailsName">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">3dp</item>
+        <item name="android:alpha">.6</item>
+        <item name="android:textColor">@android:color/background_dark</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="ContactDetailsNumber">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:alpha">.6</item>
+        <item name="android:textColor">@android:color/background_dark</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="HorizontalDivider">
+        <item name="android:layout_width">1dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_margin">4dp</item>
+        <item name="android:alpha">.1</item>
+        <item name="android:background">@android:color/background_dark</item>
+    </style>
+
+    <style name="VerticalDivider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:layout_marginLeft">15dp</item>
+        <item name="android:layout_marginRight">15dp</item>
+        <item name="android:alpha">.1</item>
+        <item name="android:background">@android:color/background_dark</item>
+    </style>
+
+    <style name="CardDetailsTextHeader">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">5dp</item>
+        <item name="android:layout_gravity">left</item>
+        <item name="android:textColor">#31b49d</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="CardDetailsText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:alpha">.6</item>
+        <item name="android:layout_gravity">left</item>
+        <item name="android:textColor">@android:color/background_dark</item>
+        <item name="android:textSize">12sp</item>
     </style>
 
 </resources>

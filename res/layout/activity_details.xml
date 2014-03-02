@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#eeeeee" >
+    android:layout_height="match_parent" >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#eeeeee"
         android:orientation="vertical" >
+
+        <!-- Image & Text overlay -->
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -31,102 +33,30 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|bottom"
                 android:layout_marginBottom="15dp"
-                android:gravity="bottom"
+                android:fontFamily="sans-serif-condensed"
                 android:textColor="@android:color/white"
                 android:textSize="25sp"
                 android:textStyle="bold" />
         </FrameLayout>
 
+        <!-- Date & Time -->
+
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:background="@drawable/card_layout"
-            android:orientation="vertical" >
+            style="@style/DetailsCard"
+            android:gravity="center"
+            android:orientation="horizontal" >
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:weightSum="21" >
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="10"
-                    android:gravity="center"
-                    android:orientation="vertical" >
-
-                    <TextView
-                        android:id="@+id/tv_edate"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="#31b49d"
-                        android:textSize="15sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:alpha=".4"
-                        android:text="Date"
-                        android:textColor="@android:color/background_dark"
-                        android:textSize="12sp" />
-                </LinearLayout>
-
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="4dp"
-                    android:alpha=".1"
-                    android:background="@android:color/background_dark" />
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="10"
-                    android:gravity="center"
-                    android:orientation="vertical" >
-
-                    <TextView
-                        android:id="@+id/tv_etime"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="04:00 PM"
-                        android:textColor="#31b49d"
-                        android:textSize="15sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:alpha=".4"
-                        android:text="Time"
-                        android:textColor="@android:color/background_dark"
-                        android:textSize="12sp" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:alpha=".1"
-                android:background="@android:color/background_dark" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="6dp"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:gravity="center"
                 android:orientation="vertical" >
 
                 <TextView
-                    android:id="@+id/tv_evenue"
+                    android:id="@+id/tv_edate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="OAT"
                     android:textColor="#31b49d"
                     android:textSize="15sp" />
 
@@ -134,90 +64,134 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:alpha=".4"
-                    android:text="Venue"
+                    android:text="Date"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <View style="@style/HorizontalDivider" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/tv_etime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/generic_time"
+                    android:textColor="#31b49d"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:alpha=".4"
+                    android:text="@string/time"
                     android:textColor="@android:color/background_dark"
                     android:textSize="12sp" />
             </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/prize_venue"
+            style="@style/DetailsCard"
+            android:gravity="center"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/tv_evenue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#31b49d"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:alpha=".4"
+                    android:text="@string/venue"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <View style="@style/HorizontalDivider" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/tv_eprize"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/generic_prize"
+                    android:textColor="#31b49d"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:alpha=".4"
+                    android:text="@string/prize_money"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- End -->
+
+        <LinearLayout
             android:id="@+id/card_details"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="0dp"
-            android:background="@drawable/card_layout"
-            android:orientation="vertical"
-            android:padding="16dp" >
+            style="@style/DetailsCard" >
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:layout_marginBottom="5dp"
-                android:text="Details"
-                android:textColor="#31b49d"
-                android:textSize="15sp" />
+                style="@style/CardDetailsTextHeader"
+                android:text="@string/details" />
 
             <TextView
                 android:id="@+id/tv_edesc"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:alpha=".6"
-                android:textColor="@android:color/background_dark"
-                android:textSize="12sp" />
+                style="@style/CardDetailsText" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/card_rules"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="0dp"
-            android:background="@drawable/card_layout"
-            android:orientation="vertical"
-            android:padding="16dp" >
+            style="@style/DetailsCard" >
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:layout_marginBottom="5dp"
-                android:text="Rules"
-                android:textColor="#31b49d"
-                android:textSize="15sp" />
+                style="@style/CardDetailsTextHeader"
+                android:text="@string/rules" />
 
             <TextView
                 android:id="@+id/tv_erules"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:alpha=".6"
-                android:textColor="@android:color/background_dark"
-                android:textSize="12sp" />
+                style="@style/CardDetailsText" />
+                
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/card_heads"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="0dp"
-            android:background="@drawable/card_layout"
-            android:orientation="vertical"
-            android:padding="16dp" >
+            style="@style/DetailsCard"
+            android:layout_margin="10dp" >
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
                 android:layout_marginBottom="8dp"
-                android:text="Event Heads"
+                android:text="@string/event_heads"
                 android:textColor="#31b49d"
                 android:textSize="15sp" />
 
@@ -229,12 +203,7 @@
 
                 <TextView
                     android:id="@+id/tv_ehead1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="3dp"
-                    android:alpha=".6"
-                    android:textColor="@android:color/background_dark"
-                    android:textSize="12sp" />
+                    style="@style/ContactDetailsName" />
 
                 <LinearLayout
                     android:id="@+id/phone1"
@@ -255,19 +224,15 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:alpha=".6"
-                        android:text="+91 9999999999"
                         android:textColor="@android:color/background_dark"
                         android:textSize="12sp" />
                 </LinearLayout>
             </LinearLayout>
 
             <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
+                style="@style/VerticalDivider"
                 android:layout_marginBottom="6dp"
-                android:layout_marginTop="6dp"
-                android:alpha=".2"
-                android:background="@android:color/background_dark" />
+                android:layout_marginTop="6dp" />
 
             <LinearLayout
                 android:id="@+id/call2"
@@ -277,12 +242,7 @@
 
                 <TextView
                     android:id="@+id/tv_ehead2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="3dp"
-                    android:alpha=".6"
-                    android:textColor="@android:color/background_dark"
-                    android:textSize="12sp" />
+                    style="@style/ContactDetailsName" />
 
                 <LinearLayout
                     android:id="@+id/phone2"
@@ -300,11 +260,7 @@
 
                     <TextView
                         android:id="@+id/tv_ephone2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:alpha=".6"
-                        android:textColor="@android:color/background_dark"
-                        android:textSize="12sp" />
+                        style="@style/ContactDetailsNumber" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

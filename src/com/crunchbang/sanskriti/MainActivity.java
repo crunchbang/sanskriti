@@ -1,5 +1,7 @@
 package com.crunchbang.sanskriti;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
@@ -13,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class MainActivity extends FragmentActivity {
 
@@ -72,13 +75,8 @@ public class MainActivity extends FragmentActivity {
 			}
 		});
 
-		FragmentTransaction tx = getSupportFragmentManager()
-				.beginTransaction();
-		tx.replace(R.id.main, Fragment.instantiate(MainActivity.this,
-				classes[0]));
-		tx.addToBackStack(null);
-		tx.commit();
 		drawer.openDrawer(navList);
+
 	}
 
 	private void updateContent() {
@@ -92,6 +90,9 @@ public class MainActivity extends FragmentActivity {
 			case 2:
 				value = "sports";
 				break;
+			case 3:
+				value = "inter";
+				break;
 			}
 			Bundle bundle = new Bundle();
 			bundle.putString(KEY, value);
@@ -99,10 +100,17 @@ public class MainActivity extends FragmentActivity {
 					.beginTransaction();
 			tx.replace(R.id.main, Fragment.instantiate(MainActivity.this,
 					classes[selection], bundle));
-			tx.addToBackStack(null);
+			if (oldSelection != -1)
+				tx.addToBackStack(null);
 			tx.commit();
 			oldSelection = selection;
 		}
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		getActionBar().setTitle(names[0]);
 	}
 
 	@Override
@@ -116,12 +124,27 @@ public class MainActivity extends FragmentActivity {
 		if (drawerToggle.onOptionsItemSelected(item)) {
 			return true;
 		}
-		return super.onOptionsItemSelected(item);
+		switch (item.getItemId()) {
+		case R.id.about_developers:
+			AlertDialog.Builder devInfo = new AlertDialog.Builder(this);
+			devInfo.setTitle("Developed By");
+			devInfo.setMessage(R.string.developers).setPositiveButton("OK",
+					new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+
+						}
+					});
+			AlertDialog alert = devInfo.create();
+			alert.show();
+			break;
+
+		}
+		return true;
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
