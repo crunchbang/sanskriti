@@ -25,13 +25,14 @@ public class DataBaseHelper extends SQLiteAssetHelper {
 	public static final String KEY_ECONTACT1 = "econtact1";
 	public static final String KEY_ECONTACT2 = "econtact2";
 	public static final String KEY_EVENUE = "evenue";
+	public static final String KEY_ETIME = "etime";
 
 	private static SQLiteDatabase db;
 	private static DataBaseHelper sInstance;
 
 	public static final String[] EVENTS_PROJECTION = new String[] { KEY_ID,
 			KEY_ENAME, KEY_EDATE, KEY_EDESC, KEY_EHEAD1, KEY_EHEAD2, KEY_EPIC,
-			KEY_ETYPE, KEY_ERULES, KEY_PICLOC, KEY_EPRIZE, KEY_ECONTACT1, KEY_ECONTACT2, KEY_EVENUE };
+			KEY_ETYPE, KEY_ERULES, KEY_PICLOC, KEY_EPRIZE, KEY_ECONTACT1, KEY_ECONTACT2, KEY_EVENUE , KEY_ETIME};
 
 	public static DataBaseHelper getInstance(Context context) {
 		if (sInstance == null) {

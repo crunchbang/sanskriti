@@ -9,7 +9,6 @@
     <string name="title_activity_details">Details</string>
     <string name="spreading_smiles">SPREADING SMILES</string>
     <string name="blood_donation">Donate blood &amp; organs; Save Lives\nLive through others even after the end of your life.  There are certain gifts, that, if kept with you would only dry up and cease to exist. These gifts could be the key to save a life and to all those that depend on it.\nDonate your blood and spare your organs for the needy.\n See how a single pint can save lives and a single act of kindness can create a million smiles!</string>
-    <string name="generic_time">04:00 PM</string>
     <string name="time">Time</string>
     <string name="venue">Venue</string>
     <string name="generic_prize">Rs. 2000</string>
@@ -17,11 +16,11 @@
     <string name="details">Details</string>
     <string name="rules">Rules</string>
     <string name="event_heads">Event Heads</string>
-    <string name="sanskriti_logo">sanskriti logo</string>
     <string name="smile_details">SMILE! It’s best thing you can do with your lips.\nYou have one smile; Why not share it with everyone?\nIt’s the one thing that can be given away and returned back instantly with absolutely no cost to pay for.  We, at SANSKRITI are here to help you share that smile.\nCome, be a part of this social initiative and see how your smile can make a difference!</string>
     <string name="blood_organ_donation">Blood &amp; Organ Donation</string>
     <string name="about_organizers">About Organizers</string>
     <string name="about_app_devs">About App Devs</string>
-    <string name="developers">Althaf P Jaleel\n\nAthul Suresh\n\nJohns Mathew Vandanakara</string>
+    <string name="developers">Althaf P Jaleel\n\nAthul Suresh\n\nJohns Mathew</string>
+    <string name="date">Date</string>
 
 </resources>

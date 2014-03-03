@@ -6,7 +6,6 @@ import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,7 +37,6 @@ public class EventListFragment extends ListFragment {
 		super.onListItemClick(l, v, position, id);
 
 		Cursor itemCursor = (Cursor) getListAdapter().getItem(position);
-		Log.d("TAG", "CLICKED!");
 		int itemID = itemCursor.getInt(itemCursor
 				.getColumnIndex(DataBaseHelper.KEY_ID));
 		Bundle bundle = new Bundle();

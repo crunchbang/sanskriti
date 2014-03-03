@@ -11,15 +11,15 @@ import android.widget.TextView;
 
 import com.crunchbang.sanskriti.helper.DataBaseHelper;
 import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
 public class DetailsActivity extends Activity {
 
 	int itemID;
 	DataBaseHelper dbHelper;
 	TextView tvName, tvDesc, tvHead1, tvHead2, tvDate, tvRules, tvPhone1,
-			tvPhone2, tvVenue, tvPrize;
-	View ruleLayout, phone1Layout, phone2Layout, prizeVenueLayout;
+			tvPhone2, tvVenue, tvPrize, tvTime;
+	View ruleLayout, phone1Layout, phone2Layout, prizeVenueLayout, descLayout,
+			head2Layout;
 	ImageView ivPic;
 	ImageLoader imageLoader;
 
@@ -30,7 +30,7 @@ public class DetailsActivity extends Activity {
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 
 		imageLoader = ImageLoader.getInstance();
-		imageLoader.init(ImageLoaderConfiguration.createDefault(this));
+		// imageLoader.init(ImageLoaderConfiguration.createDefault(this));
 		dbHelper = DataBaseHelper.getInstance(getApplicationContext());
 		Bundle bundle = getIntent().getExtras();
 		itemID = bundle.getInt(EventListFragment.KEY);
@@ -45,10 +45,13 @@ public class DetailsActivity extends Activity {
 		tvPhone2 = (TextView) findViewById(R.id.tv_ephone2);
 		tvPrize = (TextView) findViewById(R.id.tv_eprize);
 		tvVenue = (TextView) findViewById(R.id.tv_evenue);
+		tvTime = (TextView) findViewById(R.id.tv_etime);
 
+		descLayout = findViewById(R.id.card_details);
 		ruleLayout = findViewById(R.id.card_rules);
 		phone1Layout = findViewById(R.id.phone1);
 		phone2Layout = findViewById(R.id.phone2);
+		head2Layout = findViewById(R.id.call2);
 		prizeVenueLayout = findViewById(R.id.prize_venue);
 
 		new DetailsLoaderTask().execute();
@@ -57,7 +60,7 @@ public class DetailsActivity extends Activity {
 	private class DetailsLoaderTask extends AsyncTask<Void, Void, Void> {
 		Cursor cursor;
 		String eName, eDate, eHead1, eHead2, eDesc, eRules, picLoc, ePhone1,
-				ePhone2, ePrize, eVenue;
+				ePhone2, ePrize, eVenue, eTime;
 
 		@Override
 		protected Void doInBackground(Void... params) {
@@ -86,6 +89,8 @@ public class DetailsActivity extends Activity {
 					.getColumnIndex(DataBaseHelper.KEY_EPRIZE));
 			eVenue = cursor.getString(cursor
 					.getColumnIndex(DataBaseHelper.KEY_EVENUE));
+			eTime = cursor.getString(cursor
+					.getColumnIndex(DataBaseHelper.KEY_ETIME));
 			cursor.close();
 			return null;
 		}
@@ -96,9 +101,11 @@ public class DetailsActivity extends Activity {
 			tvName.setText(eName);
 			tvDate.setText(eDate);
 			tvHead1.setText(eHead1);
-			tvHead2.setText(eHead2);
-			tvDesc.setText(eDesc);
-			tvPhone2.setText(ePhone2);
+
+			if (eDesc.equals(""))
+				descLayout.setVisibility(View.GONE);
+			else
+				tvDesc.setText(eDesc);
 
 			if (eRules.equals(""))
 				ruleLayout.setVisibility(View.GONE);
@@ -110,10 +117,15 @@ public class DetailsActivity extends Activity {
 			else
 				tvPhone1.setText(ePhone1);
 
-			if (ePhone2.equals(""))
-				phone2Layout.setVisibility(View.GONE);
-			else
-				tvPhone2.setText(ePhone2);
+			if (eHead2.equals(""))
+				head2Layout.setVisibility(View.GONE);
+			else {
+				tvHead2.setText(eHead2);
+				if (ePhone2.equals(""))
+					phone2Layout.setVisibility(View.GONE);
+				else
+					tvPhone2.setText(ePhone2);
+			}
 
 			if (ePrize.equals(""))
 				prizeVenueLayout.setVisibility(View.GONE);
@@ -121,6 +133,8 @@ public class DetailsActivity extends Activity {
 				tvPrize.setText(ePrize);
 				tvVenue.setText(eVenue);
 			}
+
+			tvTime.setText(eTime);
 			imageLoader.displayImage(picLoc, ivPic);
 		}
 	}

@@ -11,11 +11,11 @@ import android.support.v4.widget.DrawerLayout;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 public class MainActivity extends FragmentActivity {
 
@@ -81,30 +81,29 @@ public class MainActivity extends FragmentActivity {
 
 	private void updateContent() {
 		getActionBar().setTitle(names[selection]);
-		if (selection != oldSelection) {
-			String value = null;
-			switch (selection) {
-			case 1:
-				value = "intra";
-				break;
-			case 2:
-				value = "sports";
-				break;
-			case 3:
-				value = "inter";
-				break;
-			}
-			Bundle bundle = new Bundle();
-			bundle.putString(KEY, value);
-			FragmentTransaction tx = getSupportFragmentManager()
-					.beginTransaction();
-			tx.replace(R.id.main, Fragment.instantiate(MainActivity.this,
-					classes[selection], bundle));
-			if (oldSelection != -1)
-				tx.addToBackStack(null);
-			tx.commit();
-			oldSelection = selection;
+		// if (selection != oldSelection) {
+		String value = null;
+		switch (selection) {
+		case 1:
+			value = "intra";
+			break;
+		case 2:
+			value = "sports";
+			break;
+		case 3:
+			value = "inter";
+			break;
 		}
+		Bundle bundle = new Bundle();
+		bundle.putString(KEY, value);
+		FragmentTransaction tx = getSupportFragmentManager().beginTransaction();
+		tx.replace(R.id.main, Fragment.instantiate(MainActivity.this,
+				classes[selection], bundle));
+		if (oldSelection != -1)
+			tx.addToBackStack(null);
+		tx.commit();
+		oldSelection = selection;
+		// }
 	}
 
 	@Override
@@ -124,22 +123,35 @@ public class MainActivity extends FragmentActivity {
 		if (drawerToggle.onOptionsItemSelected(item)) {
 			return true;
 		}
+		AlertDialog.Builder infoDialog = new AlertDialog.Builder(this);
 		switch (item.getItemId()) {
 		case R.id.about_developers:
-			AlertDialog.Builder devInfo = new AlertDialog.Builder(this);
-			devInfo.setTitle("Developed By");
-			devInfo.setMessage(R.string.developers).setPositiveButton("OK",
+			infoDialog.setTitle("Developed By");
+			infoDialog.setMessage(R.string.developers).setPositiveButton("OK",
 					new DialogInterface.OnClickListener() {
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
 
 						}
 					});
-			AlertDialog alert = devInfo.create();
-			alert.show();
 			break;
+		case R.id.about_organizers:
+			infoDialog.setTitle("Organizers");
+			WebView wv = new WebView(this);
+			wv.loadUrl("file:///android_asset/about.html");
+
+			infoDialog.setView(wv);
+			infoDialog.setNegativeButton("Close",
+					new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialog, int id) {
+							dialog.dismiss();
+						}
+					});
 
 		}
+		AlertDialog alert = infoDialog.create();
+		alert.show();
 		return true;
 	}
 
