@@ -1,11 +1,14 @@
 package com.crunchbang.sanskriti;
 
+import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,9 +22,10 @@ public class DetailsActivity extends ActionBarActivity {
 	TextView tvName, tvDesc, tvHead1, tvHead2, tvDate, tvRules, tvPhone1,
 			tvPhone2, tvVenue, tvPrize, tvTime;
 	View ruleLayout, phone1Layout, phone2Layout, prizeVenueLayout, descLayout,
-			head2Layout;
+			head2Layout, head1Layout;
 	ImageView ivPic;
 	ImageLoader imageLoader;
+	String ePhone1, ePhone2;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -51,15 +55,37 @@ public class DetailsActivity extends ActionBarActivity {
 		phone1Layout = findViewById(R.id.phone1);
 		phone2Layout = findViewById(R.id.phone2);
 		head2Layout = findViewById(R.id.call2);
+		head1Layout = findViewById(R.id.call1);
 		prizeVenueLayout = findViewById(R.id.prize_venue);
 
 		new DetailsLoaderTask().execute();
+
+		head1Layout.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View view) {
+				Intent intent = new Intent(Intent.ACTION_DIAL);
+				intent.setData(Uri.parse("tel:" + ePhone1));
+				startActivity(intent);
+
+			}
+		});
+		head2Layout.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View view) {
+				Intent intent = new Intent(Intent.ACTION_DIAL);
+				intent.setData(Uri.parse("tel:" + ePhone2));
+				startActivity(intent);
+
+			}
+		});
 	}
 
 	private class DetailsLoaderTask extends AsyncTask<Void, Void, Void> {
 		Cursor cursor;
-		String eName, eDate, eHead1, eHead2, eDesc, eRules, picLoc, ePhone1,
-				ePhone2, ePrize, eVenue, eTime;
+		String eName, eDate, eHead1, eHead2, eDesc, eRules, picLoc, ePrize,
+				eVenue, eTime;
 
 		@Override
 		protected Void doInBackground(Void... params) {
