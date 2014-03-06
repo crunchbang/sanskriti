@@ -63,9 +63,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:alpha=".4"
                     android:text="@string/date"
-                    android:textColor="@android:color/background_dark"
+                    android:textColor="#ADADAD"
                     android:textSize="12sp" />
             </LinearLayout>
 
@@ -88,9 +87,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:alpha=".4"
                     android:text="@string/time"
-                    android:textColor="@android:color/background_dark"
+                    android:textColor="#ADADAD"
                     android:textSize="12sp" />
             </LinearLayout>
         </LinearLayout>
@@ -118,9 +116,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:alpha=".4"
                     android:text="@string/venue"
-                    android:textColor="@android:color/background_dark"
+                    android:textColor="#ADADAD"
                     android:textSize="12sp" />
             </LinearLayout>
 
@@ -144,9 +141,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:alpha=".4"
                     android:text="@string/prize_money"
-                    android:textColor="@android:color/background_dark"
+                    android:textColor="#ADADAD"
                     android:textSize="12sp" />
             </LinearLayout>
         </LinearLayout>
@@ -177,7 +173,6 @@
             <TextView
                 android:id="@+id/tv_erules"
                 style="@style/CardDetailsText" />
-                
         </LinearLayout>
 
         <LinearLayout
@@ -220,11 +215,7 @@
 
                     <TextView
                         android:id="@+id/tv_ephone1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:alpha=".6"
-                        android:textColor="@android:color/background_dark"
-                        android:textSize="12sp" />
+                        style="@style/ContactDetailsNumber" />
                 </LinearLayout>
             </LinearLayout>
 

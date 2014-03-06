@@ -1,9 +1,9 @@
 package com.crunchbang.sanskriti;
 
-import android.app.Activity;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ImageView;
@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.crunchbang.sanskriti.helper.DataBaseHelper;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
-public class DetailsActivity extends Activity {
+public class DetailsActivity extends ActionBarActivity {
 
 	int itemID;
 	DataBaseHelper dbHelper;
@@ -27,10 +27,9 @@ public class DetailsActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_details);
-		getActionBar().setDisplayHomeAsUpEnabled(true);
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 		imageLoader = ImageLoader.getInstance();
-		// imageLoader.init(ImageLoaderConfiguration.createDefault(this));
 		dbHelper = DataBaseHelper.getInstance(getApplicationContext());
 		Bundle bundle = getIntent().getExtras();
 		itemID = bundle.getInt(EventListFragment.KEY);

@@ -10,14 +10,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.crunchbang.sanskriti.R;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
 public class ImageCursorAdapter extends CursorAdapter {
 	Cursor cursor;
 	Context context;
-	DisplayImageOptions options;
 	ImageLoader imageLoader;
 	private LayoutInflater mInflater;
 
@@ -34,12 +31,9 @@ public class ImageCursorAdapter extends CursorAdapter {
 		super(context, c, 0);
 		this.cursor = c;
 		this.context = context;
-		options = new DisplayImageOptions.Builder().cacheInMemory(true)
-				.cacheOnDisc(true).resetViewBeforeLoading(true).build();
 		mInflater = (LayoutInflater) context
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		imageLoader = ImageLoader.getInstance();
-		imageLoader.init(ImageLoaderConfiguration.createDefault(context));
 	}
 
 	@Override
@@ -66,7 +60,7 @@ public class ImageCursorAdapter extends CursorAdapter {
 		viewHolder.date.setText(cursor.getString(viewHolder.dateIndex));
 		String picURI = cursor.getString(viewHolder.imageIndex);
 		if (!picURI.equals(""))
-			imageLoader.displayImage(picURI, viewHolder.image, options);
+			imageLoader.displayImage(picURI, viewHolder.image);
 
 	}
 }

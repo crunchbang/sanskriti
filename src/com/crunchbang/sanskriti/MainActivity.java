@@ -5,9 +5,9 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,7 +17,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-public class MainActivity extends FragmentActivity {
+public class MainActivity extends ActionBarActivity {
 
 	String[] names;
 	String[] classes;
@@ -45,19 +45,19 @@ public class MainActivity extends FragmentActivity {
 			public void onDrawerClosed(View drawerView) {
 				super.onDrawerClosed(drawerView);
 				updateContent();
-				invalidateOptionsMenu();
+				supportInvalidateOptionsMenu();
 			}
 
 			@Override
 			public void onDrawerOpened(View drawerView) {
 				super.onDrawerOpened(drawerView);
-				getActionBar().setTitle(R.string.app_name);
+				getSupportActionBar().setTitle(R.string.app_name);
 			}
 
 		};
 		drawer.setDrawerListener(drawerToggle);
-		getActionBar().setDisplayHomeAsUpEnabled(true);
-		getActionBar().setHomeButtonEnabled(true);
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		getSupportActionBar().setHomeButtonEnabled(true);
 		updateContent();
 
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
@@ -80,7 +80,7 @@ public class MainActivity extends FragmentActivity {
 	}
 
 	private void updateContent() {
-		getActionBar().setTitle(names[selection]);
+		getSupportActionBar().setTitle(names[selection]);
 		// if (selection != oldSelection) {
 		String value = null;
 		switch (selection) {
@@ -109,7 +109,7 @@ public class MainActivity extends FragmentActivity {
 	@Override
 	protected void onResume() {
 		super.onResume();
-		getActionBar().setTitle(names[0]);
+		getSupportActionBar().setTitle(names[0]);
 	}
 
 	@Override

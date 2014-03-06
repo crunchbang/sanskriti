@@ -8,7 +8,7 @@ import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 
 public class DataBaseHelper extends SQLiteAssetHelper {
 	private static final String DATABASE_NAME = "events.sqlite";
-	private static final int DATABASE_VERSION = 1;
+	private static final int DATABASE_VERSION = 2;
 
 	public static final String TABLE_EVENTS = "events";
 	public static final String KEY_ID = "_id";
