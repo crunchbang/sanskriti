@@ -78,7 +78,7 @@
                 android:orientation="vertical" >
 
                 <TextView
-                    android:id="@+id/tv_etime"
+                    android:id="@+id/tv_evenue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#31b49d"
@@ -86,15 +86,16 @@
 
                 <TextView
                     android:layout_width="wrap_content"
+                    android:id="@+id/tv_replace"
                     android:layout_height="wrap_content"
-                    android:text="@string/time"
+                    android:text="@string/venue"
                     android:textColor="#ADADAD"
                     android:textSize="12sp" />
             </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/prize_venue"
+            android:id="@+id/time_prize"
             style="@style/DetailsCard"
             android:gravity="center"
             android:orientation="horizontal" >
@@ -107,7 +108,7 @@
                 android:orientation="vertical" >
 
                 <TextView
-                    android:id="@+id/tv_evenue"
+                    android:id="@+id/tv_etime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#31b49d"
@@ -116,7 +117,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/venue"
+                    android:text="@string/time"
                     android:textColor="#ADADAD"
                     android:textSize="12sp" />
             </LinearLayout>

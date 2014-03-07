@@ -69,7 +69,8 @@ public class EventListFragment extends ListFragment {
 
 		@Override
 		protected void onPostExecute(Void result) {
-			ImageCursorAdapter adapter = new ImageCursorAdapter(context, cursor);
+			ImageCursorAdapter adapter = new ImageCursorAdapter(context,
+					cursor, eventType);
 			setListAdapter(adapter);
 		}
 

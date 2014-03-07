@@ -28,7 +28,7 @@ public class MainActivity extends ActionBarActivity {
 	private int selection = 0;
 	private int oldSelection = -1;
 
-	public static final String KEY = "com.crunchbang.sanskriti.MainActivity";
+	public static final String KEY = "MainActivity";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -92,6 +92,9 @@ public class MainActivity extends ActionBarActivity {
 			break;
 		case 3:
 			value = "inter";
+			break;
+		case 4:
+			value = "concert";
 			break;
 		}
 		Bundle bundle = new Bundle();

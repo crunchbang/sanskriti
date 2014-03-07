@@ -16,6 +16,7 @@ public class ImageCursorAdapter extends CursorAdapter {
 	Cursor cursor;
 	Context context;
 	ImageLoader imageLoader;
+	int rowLayout;
 	private LayoutInflater mInflater;
 
 	private static class ViewHolder {
@@ -27,18 +28,22 @@ public class ImageCursorAdapter extends CursorAdapter {
 		public ImageView image;
 	}
 
-	public ImageCursorAdapter(Context context, Cursor c) {
+	public ImageCursorAdapter(Context context, Cursor c, String layoutType) {
 		super(context, c, 0);
 		this.cursor = c;
 		this.context = context;
 		mInflater = (LayoutInflater) context
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		imageLoader = ImageLoader.getInstance();
+		if (layoutType.equals("concert"))
+			rowLayout = R.layout.concert_list_row;
+		else
+			rowLayout = R.layout.event_list_row;
 	}
 
 	@Override
 	public View newView(Context context, Cursor cursor, ViewGroup parent) {
-		View view = mInflater.inflate(R.layout.event_list_row, parent, false);
+		View view = mInflater.inflate(rowLayout, parent, false);
 		ViewHolder viewHolder = new ViewHolder();
 		viewHolder.text = (TextView) view.findViewById(R.id.ename);
 		viewHolder.date = (TextView) view.findViewById(R.id.edate);

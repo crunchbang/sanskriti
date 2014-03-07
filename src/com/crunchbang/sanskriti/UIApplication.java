@@ -15,8 +15,8 @@ public class UIApplication extends Application {
 				.cacheInMemory(true).cacheOnDisc(true)
 				.resetViewBeforeLoading(true).build();
 		ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(
-				getApplicationContext()).memoryCacheExtraOptions(480, 300)
-				.defaultDisplayImageOptions(options).build();
+				getApplicationContext()).defaultDisplayImageOptions(options)
+				.threadPoolSize(1).threadPriority(1).build();
 		ImageLoader.getInstance().init(config);
 	}
 

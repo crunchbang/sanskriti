@@ -6,10 +6,12 @@
         <item>Intra Events</item>
         <item>Intra Sports</item>
         <item>Inter Events</item>
+        <item>Highlight Events</item>
         <item>Social Initiative</item>
     </string-array>
     <string-array name="nav_classes">
         <item>com.crunchbang.sanskriti.HomeFragment</item>
+        <item>com.crunchbang.sanskriti.EventListFragment</item>
         <item>com.crunchbang.sanskriti.EventListFragment</item>
         <item>com.crunchbang.sanskriti.EventListFragment</item>
         <item>com.crunchbang.sanskriti.EventListFragment</item>

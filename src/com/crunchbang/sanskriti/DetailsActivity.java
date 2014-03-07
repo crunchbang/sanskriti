@@ -20,9 +20,9 @@ public class DetailsActivity extends ActionBarActivity {
 	int itemID;
 	DataBaseHelper dbHelper;
 	TextView tvName, tvDesc, tvHead1, tvHead2, tvDate, tvRules, tvPhone1,
-			tvPhone2, tvVenue, tvPrize, tvTime;
-	View ruleLayout, phone1Layout, phone2Layout, prizeVenueLayout, descLayout,
-			head2Layout, head1Layout;
+			tvPhone2, tvVenue, tvPrize, tvTime, tvReplace;
+	View ruleLayout, phone1Layout, phone2Layout, timePrizeLayout, descLayout,
+			head2Layout, head1Layout, headsLayout;
 	ImageView ivPic;
 	ImageLoader imageLoader;
 	String ePhone1, ePhone2;
@@ -49,14 +49,16 @@ public class DetailsActivity extends ActionBarActivity {
 		tvPrize = (TextView) findViewById(R.id.tv_eprize);
 		tvVenue = (TextView) findViewById(R.id.tv_evenue);
 		tvTime = (TextView) findViewById(R.id.tv_etime);
+		tvReplace = (TextView) findViewById(R.id.tv_replace);
 
 		descLayout = findViewById(R.id.card_details);
 		ruleLayout = findViewById(R.id.card_rules);
 		phone1Layout = findViewById(R.id.phone1);
 		phone2Layout = findViewById(R.id.phone2);
+		headsLayout = findViewById(R.id.card_heads);
 		head2Layout = findViewById(R.id.call2);
 		head1Layout = findViewById(R.id.call1);
-		prizeVenueLayout = findViewById(R.id.prize_venue);
+		timePrizeLayout = findViewById(R.id.time_prize);
 
 		new DetailsLoaderTask().execute();
 
@@ -137,29 +139,39 @@ public class DetailsActivity extends ActionBarActivity {
 			else
 				tvRules.setText(eRules);
 
-			if (ePhone1.equals(""))
-				phone1Layout.setVisibility(View.GONE);
-			else
-				tvPhone1.setText(ePhone1);
-
-			if (eHead2.equals(""))
-				head2Layout.setVisibility(View.GONE);
+			if (eHead1.equals(""))
+				headsLayout.setVisibility(View.GONE);
 			else {
-				tvHead2.setText(eHead2);
-				if (ePhone2.equals(""))
-					phone2Layout.setVisibility(View.GONE);
+				tvHead1.setText(eHead1);
+				if (ePhone1.equals(""))
+					phone1Layout.setVisibility(View.GONE);
 				else
-					tvPhone2.setText(ePhone2);
+					tvPhone1.setText(ePhone1);
+
+				if (eHead2.equals(""))
+					head2Layout.setVisibility(View.GONE);
+				else {
+					tvHead2.setText(eHead2);
+					if (ePhone2.equals(""))
+						phone2Layout.setVisibility(View.GONE);
+					else
+						tvPhone2.setText(ePhone2);
+				}
 			}
 
 			if (ePrize.equals(""))
-				prizeVenueLayout.setVisibility(View.GONE);
+				timePrizeLayout.setVisibility(View.GONE);
 			else {
 				tvPrize.setText(ePrize);
-				tvVenue.setText(eVenue);
+				tvTime.setText(eTime);
 			}
 
-			tvTime.setText(eTime);
+			if (eVenue.equals("")) {
+				tvReplace.setText("Time");
+				tvVenue.setText(eTime);
+			} else
+				tvVenue.setText(eVenue);
+
 			imageLoader.displayImage(picLoc, ivPic);
 		}
 	}
