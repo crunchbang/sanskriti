@@ -2,6 +2,8 @@ package com.crunchbang.sanskriti;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
@@ -15,6 +17,8 @@ import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.ImageView.ScaleType;
 import android.widget.ListView;
 
 public class MainActivity extends ActionBarActivity {
@@ -83,28 +87,36 @@ public class MainActivity extends ActionBarActivity {
 		getSupportActionBar().setTitle(names[selection]);
 		// if (selection != oldSelection) {
 		String value = null;
-		switch (selection) {
-		case 1:
-			value = "intra";
-			break;
-		case 2:
-			value = "sports";
-			break;
-		case 3:
-			value = "inter";
-			break;
-		case 4:
-			value = "concert";
-			break;
+		if (selection == 6) {
+			Intent intent = new Intent(this, ResultActivity.class);
+			startActivity(intent);
 		}
-		Bundle bundle = new Bundle();
-		bundle.putString(KEY, value);
-		FragmentTransaction tx = getSupportFragmentManager().beginTransaction();
-		tx.replace(R.id.main, Fragment.instantiate(MainActivity.this,
-				classes[selection], bundle));
-		if (oldSelection != -1)
-			tx.addToBackStack(null);
-		tx.commit();
+
+		else {
+			switch (selection) {
+			case 1:
+				value = "intra";
+				break;
+			case 2:
+				value = "sports";
+				break;
+			case 3:
+				value = "inter";
+				break;
+			case 4:
+				value = "concert";
+				break;
+			}
+			Bundle bundle = new Bundle();
+			bundle.putString(KEY, value);
+			FragmentTransaction tx = getSupportFragmentManager()
+					.beginTransaction();
+			tx.replace(R.id.main, Fragment.instantiate(MainActivity.this,
+					classes[selection], bundle));
+			if (oldSelection != -1)
+				tx.addToBackStack(null);
+			tx.commit();
+		}
 		oldSelection = selection;
 		// }
 	}
@@ -130,13 +142,20 @@ public class MainActivity extends ActionBarActivity {
 		switch (item.getItemId()) {
 		case R.id.about_developers:
 			infoDialog.setTitle("Developed By");
-			infoDialog.setMessage(R.string.developers).setPositiveButton("OK",
-					new DialogInterface.OnClickListener() {
-						@Override
-						public void onClick(DialogInterface dialog, int which) {
-
-						}
-					});
+			/*
+			 * infoDialog.setMessage(R.string.developers).setPositiveButton("OK",
+			 * new DialogInterface.OnClickListener() {
+			 * 
+			 * @Override public void onClick(DialogInterface dialog, int which)
+			 * {
+			 * 
+			 * } });
+			 */
+			ImageView iv = new ImageView(this);
+			iv.setImageResource(R.drawable.dev);
+			iv.setBackgroundColor(Color.parseColor("#00000000"));
+			iv.setScaleType(ScaleType.FIT_CENTER);
+			infoDialog.setView(iv);
 			break;
 		case R.id.about_organizers:
 			infoDialog.setTitle("Organizers");

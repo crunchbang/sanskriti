@@ -16,7 +16,7 @@ public class UIApplication extends Application {
 				.resetViewBeforeLoading(true).build();
 		ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(
 				getApplicationContext()).defaultDisplayImageOptions(options)
-				.threadPoolSize(1).threadPriority(1).build();
+				.build();
 		ImageLoader.getInstance().init(config);
 	}
 

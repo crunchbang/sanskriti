@@ -22,5 +22,10 @@
     <string name="about_app_devs">About App Devs</string>
     <string name="developers">Althaf P Jaleel\n\nAthul Suresh\n\nJohns Mathew\n\nWith help and guidance from:\n\nRohan Mathew\n\nAnjali P V</string>
     <string name="date">Date</string>
+    <string name="title_activity_result">Results</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="first">"1. "</string>
+    <string name="second">"2. "</string>
+    <string name="third">"3. "</string>
 
 </resources>
